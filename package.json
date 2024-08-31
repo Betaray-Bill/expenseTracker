@@ -1,0 +1,25 @@
+{
+    "name": "expensetracker",
+    "version": "1.0.0",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node server/server.js",
+        "server": "nodemon server/server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.4.5",
+        "expensetracker": "file:",
+        "express": "^4.19.2",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.6.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.4"
+    }
+}
