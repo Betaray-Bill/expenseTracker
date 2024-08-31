@@ -4,12 +4,15 @@ import mongoose from "mongoose";
 import incomeRoutes from "./routes/incomeRoute.js"
 import expenseRoutes from "./routes/expenseRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import cookieParser from 'cookie-parser';
+
 dotenv.config()
 
 const PORT = process.env.PORT || 5000
 const app = express();
 app.use(express.json())
-
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // CONNECTING DB
 try {

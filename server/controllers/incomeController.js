@@ -1,4 +1,5 @@
 import Income from "../models/incomeExpense.js";
+import User from "../models/userModel.js";
 
 
 // GET ALL INCOME RECORDS
@@ -61,11 +62,17 @@ const addIncome = async(req, res) => {
         await incomeRecords.save()
         console.log(incomeRecords)
 
-        // Add Income To the Finance Record
+        // Add Income To the Personal Finance Record
+        const user = await User.findById(req.user.id)
+        console.log(user)
 
+        await user.income.push(incomeRecords._id)
+        user.totalIncome = user.totalIncome + incomeRecords.amount
+        await user.save()
 
         res.status(200).json({
             incomeRecords,
+            user,
             message: "Success"
         });
 

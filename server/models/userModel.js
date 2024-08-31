@@ -15,24 +15,18 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    income: {
-        type: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Income',
-        }],
-        default: []
-    },
+    income: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Income',
+    }],
     totalIncome: {
         type: Number,
         default: 0,
     },
-    expense: {
-        type: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Expense',
-        }],
-        default: []
-    },
+    expense: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Expense',
+    }],
     totalExpense: {
         type: Number,
         default: 0,
