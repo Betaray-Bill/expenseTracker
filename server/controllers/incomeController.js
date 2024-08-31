@@ -1,4 +1,3 @@
-import FinanceRecords from "../models/financeRecords.js";
 import Income from "../models/incomeExpense.js";
 
 

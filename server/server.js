@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from "mongoose";
 import incomeRoutes from "./routes/incomeRoute.js"
 import expenseRoutes from "./routes/expenseRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 dotenv.config()
 
 const PORT = process.env.PORT || 5000
@@ -28,8 +29,13 @@ app.get("/", (req, res) => {
     res.send("Hi There!!")
 })
 
+// ROUTES
 app.use("/api/v1/income", incomeRoutes)
 app.use("/api/v1/expense", expenseRoutes)
+app.use("/api/v1/user", userRoutes)
+
+
+// PORT 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
