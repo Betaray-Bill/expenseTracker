@@ -3,7 +3,7 @@ import { addIncome, getAllRecords } from '../controllers/incomeController.js';
 import protect from '../middleware/authMiddleware.js';
 const router = express.Router();
 
-router.get("/getAllIncome", protect, getAllRecords)
+router.get("/getAllIncome/:id", protect, getAllRecords)
 router.post("/addIncome", protect, addIncome)
 
 

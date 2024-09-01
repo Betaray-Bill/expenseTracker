@@ -3,6 +3,17 @@ import Expense from "../models/expenseModel.js";
 // GET ALL EXPENSE RECORDS
 const getAllRecords = async(req, res) => {
 
+    const { id } = req.params;
+
+    const userExpense = await User.findById(id);
+    console.log(userExpense.expense)
+    let expenseRecords = []
+    for (let i = 0; i < userExpense.expense.length; i++) {
+        let expenseRecord = await Expense.findById(userExpense.expense[i]).sort({ date });
+        expenseRecords.push(expenseRecord)
+    }
+    console.log(expenseRecords)
+
     try {
         let filter = {};
         // Filter Month Wise

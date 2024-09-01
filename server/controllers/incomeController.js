@@ -1,3 +1,4 @@
+import moment from "moment";
 import Income from "../models/incomeExpense.js";
 import User from "../models/userModel.js";
 
@@ -5,6 +6,16 @@ import User from "../models/userModel.js";
 // GET ALL INCOME RECORDS
 const getAllRecords = async(req, res) => {
 
+    const { id } = req.params;
+
+    const userIncome = await User.findById(id);
+    console.log(userIncome.income)
+    let incomeRecords = []
+    for (let i = 0; i < userIncome.income.length; i++) {
+        let incomeRecord = await Income.findById(userIncome.income[i]).sort({ date });
+        incomeRecords.push(incomeRecord)
+    }
+    console.log(incomeRecords)
     try {
         let filter = {};
         // Filter Month Wise
@@ -22,12 +33,12 @@ const getAllRecords = async(req, res) => {
 
         console.log("FILTER:  FINAL,", filter)
 
-        const incomeRecords = await Income.find(filter);
         res.json({
             incomeRecords,
             message: "Success"
         })
     } catch (err) {
+        console.log(err.message)
         res.status(500).json("Server Error")
     }
 }
@@ -51,11 +62,12 @@ const addIncome = async(req, res) => {
     }
 
     try {
-
+        const formatDate = moment(date).format('DD/MM/YYYY')
+        console.log(formatDate)
         const incomeRecords = await Income.create({
             name,
             amount,
-            date,
+            date: formatDate,
             category
         })
 
